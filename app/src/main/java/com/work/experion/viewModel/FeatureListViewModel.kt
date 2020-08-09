@@ -1,6 +1,6 @@
 package com.work.experion.viewModel
 
-import android.util.Log
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -59,5 +59,4 @@ class FeatureListViewModel(private var featureListRepository: FeatureListReposit
             _mutableFeaturesList.value = featureList
         }
     }
-
 }

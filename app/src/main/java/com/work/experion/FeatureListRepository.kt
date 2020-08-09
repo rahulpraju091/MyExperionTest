@@ -37,5 +37,4 @@ class FeatureListRepository(
     fun getFeatureListFromDB(): ArrayList<FeatureModel?>? {
         return featureDAO.getFeatureList()
     }
-
 }
