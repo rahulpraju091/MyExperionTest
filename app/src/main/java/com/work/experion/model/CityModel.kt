@@ -7,4 +7,6 @@ data class CityModel(
     var title: String?,
     @SerializedName("rows")
     var rows: ArrayList<FeatureModel?>?
-)
+) {
+    constructor() : this(null, null)
+}

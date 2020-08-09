@@ -9,4 +9,6 @@ data class FeatureModel(
     var description: String?,
     @SerializedName("imageHref")
     var imageHref: String?
-)
+) {
+    constructor() : this(null, null, null)
+}
