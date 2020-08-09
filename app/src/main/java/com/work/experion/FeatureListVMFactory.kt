@@ -11,7 +11,8 @@ import com.work.experion.viewModel.FeatureListViewModel
  * @param featureListRepository is the Repository class object.
  */
 @Suppress("UNCHECKED_CAST")
-class FeatureListVMFactory(private val featureListRepository: FeatureListRepository) : ViewModelProvider.NewInstanceFactory() {
+class FeatureListVMFactory(private val featureListRepository: FeatureListRepository) :
+    ViewModelProvider.NewInstanceFactory() {
 
     /** Override function.
      * @return FeatureListViewModel instance.

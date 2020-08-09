@@ -4,8 +4,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
-import com.work.experion.database.DataBaseHelper.Companion.DATABASE_NAME
-import com.work.experion.database.DataBaseHelper.Companion.DATABASE_VERSION
 import com.work.experion.database.contract.CityContract
 import com.work.experion.database.contract.FeatureContract
 
