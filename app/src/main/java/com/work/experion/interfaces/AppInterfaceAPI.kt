@@ -6,16 +6,16 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.GET
 
 interface AppInterfaceAPI {
 
     companion object {
         operator fun invoke(): AppInterfaceAPI {
-            val intecepter = HttpLoggingInterceptor()
-            intecepter.level = HttpLoggingInterceptor.Level.BODY
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
             val client: OkHttpClient = OkHttpClient.Builder()
-                .addInterceptor(intecepter)
+                .addInterceptor(interceptor)
                 .build()
             return Retrofit.Builder()
                 .baseUrl("https://dl.dropboxusercontent.com/")
@@ -27,9 +27,7 @@ interface AppInterfaceAPI {
     }
 
     @GET("s/2iodh4vg0eortkl/facts.json")
-    @FormUrlEncoded
     suspend fun doGetLocationDetails(): Response<CityModel>
-
 
 
 }
