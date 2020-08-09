@@ -5,6 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * Initial activity .
+ *
+ * This activity launches first and open FeatureListFragment.kt.
+ *
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

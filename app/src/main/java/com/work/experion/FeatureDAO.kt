@@ -10,8 +10,17 @@ import com.work.experion.database.contract.FeatureContract
 import com.work.experion.model.CityModel
 import com.work.experion.model.FeatureModel
 
-class FeatureDAO(private var context: Context) : DbDao(context) {
+/**
+ * DAO class.
+ *
+ * This class handles all feature related DB operations.
+ * @param context is the Context value of calling class. Used for initialize DB
+ */
+class FeatureDAO(context: Context) : DbDao(context) {
 
+    /** DB insert function. Its used for insert city data into city table.
+     * @return insert long value if the insertion is success.
+     */
     fun insertCityDetailsToDB(response: CityModel): Long {
         var insert: Long = 0
         val values = ContentValues()
@@ -20,6 +29,7 @@ class FeatureDAO(private var context: Context) : DbDao(context) {
         return insert
     }
 
+    /** DB insert function. Its used for insert feature list into feature table. */
     fun insertFeatureDetails(rows: ArrayList<FeatureModel?>?) {
         for (i in 0..rows!!.size.minus(1)) {
             val featureValues = ContentValues().also {
@@ -34,6 +44,8 @@ class FeatureDAO(private var context: Context) : DbDao(context) {
         }
     }
 
+    /** DB truncate function.
+     * Its used for truncate all existing data from tables. */
     fun truncateAllTables() {
         val sqlCity = "DELETE FROM " + CityContract.Entry.CITY_TABLE
         val sqlFeature = "DELETE FROM " + FeatureContract.Entry.FEATURE_TABLE
@@ -41,6 +53,7 @@ class FeatureDAO(private var context: Context) : DbDao(context) {
         database!!.execSQL(sqlFeature)
     }
 
+    /** DB read function. Its used for get city details. */
     @SuppressLint("Recycle")
     fun getCityDetails(): CityModel {
         val cityDetails = CityModel()
@@ -52,6 +65,7 @@ class FeatureDAO(private var context: Context) : DbDao(context) {
         return cityDetails
     }
 
+    /** DB read function. Its used for get feature details. */
     @SuppressLint("Recycle")
     fun getFeatureList(): ArrayList<FeatureModel?>? {
         val featureList: ArrayList<FeatureModel?>? = arrayListOf()

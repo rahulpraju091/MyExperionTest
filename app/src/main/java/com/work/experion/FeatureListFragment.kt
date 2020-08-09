@@ -55,18 +55,8 @@ class FeatureListFragment : Fragment() {
             context?.let { ContextCompat.getColor(it, R.color.swipeColor2) }!!,
             context?.let { ContextCompat.getColor(it, R.color.swipeColor3) }!!
         )
-        //initRecyclerView(view)
         return view
     }
-
-    /* private fun initRecyclerView(view: View) {
-         this.featuresList = arrayListOf()
-         view.feature_recycler_view.apply {
-             setHasFixedSize(false)
-             layoutManager = LinearLayoutManager(activity)
-             adapter = FeaturesListAdapter(featuresList)
-         }
-     }*/
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

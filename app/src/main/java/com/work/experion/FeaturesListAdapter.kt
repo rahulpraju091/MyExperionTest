@@ -1,6 +1,5 @@
 package com.work.experion
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +9,22 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.work.experion.model.FeatureModel
 import kotlinx.android.synthetic.main.item_feature.view.*
 
-
+/**
+ * Adapter class.
+ *
+ * This class handles recyclerview item design and data.
+ *
+ * @param items is feature list.
+ */
 class FeaturesListAdapter(var items: List<FeatureModel?>) :
     RecyclerView.Adapter<FeaturesListAdapter.ViewHolder>() {
 
-    companion object {
-        val TAG: String = FeaturesListAdapter::class.java.simpleName.toString()
-    }
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        /** bind function has bind the data with layout controls.
+         * Set title, description and image data.
+         */
         fun bind(item: FeatureModel?) {
             item.let {
-                Log.d(TAG, "Item:::$it")
                 itemView.txt_title.text = it?.title
                 itemView.txt_desc.text = it?.description
                 Glide.with(itemView.context).load(it?.imageHref)
@@ -42,6 +45,8 @@ class FeaturesListAdapter(var items: List<FeatureModel?>) :
     override fun getItemCount() = this.items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        /** Calling ViewHolder class bind function and passing single item from list
+         */
         holder.bind(this.items.get(holder.adapterPosition))
     }
 
