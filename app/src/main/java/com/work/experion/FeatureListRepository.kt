@@ -20,8 +20,8 @@ class FeatureListRepository(
     /** API function. Its used for fetch data from a URL.
      * @return CityModel response data.
      */
-    suspend fun doGetLocationDetails(): Response<CityModel> {
-        return api.doGetLocationDetails()
+    suspend fun doGetCityDetails(): Response<CityModel> {
+        return api.doGetCityDetails()
     }
 
     /** DB function. Its used for fetch data from City Table.

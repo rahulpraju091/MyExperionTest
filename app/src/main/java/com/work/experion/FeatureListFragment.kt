@@ -100,9 +100,11 @@ class FeatureListFragment : Fragment() {
         })
     }
 
+    /** Call ViewModel function to get city details from API */
     private fun doGetAllDataFromAPI(featureDAO: FeatureDAO) {
         if (isNetworkAvailable()) {
-            viewModel.doGetLocationDetails(object : APICallbackListener {
+            swipe_refresh_layout.isRefreshing = true
+            viewModel.doGetCityDetails(object : APICallbackListener {
                 override fun onResponseSuccess(response: CityModel) {
                     swipe_refresh_layout.isRefreshing = false
                     featureDAO.truncateAllTables()

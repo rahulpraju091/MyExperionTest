@@ -30,9 +30,9 @@ class FeatureListViewModel(private var featureListRepository: FeatureListReposit
     /** API function. Its used for fetch data from a URL. And listener is used for make callbacks
      * It sets the result into mutable live data
      */
-    fun doGetLocationDetails(listener: APICallbackListener) {
+    fun doGetCityDetails(listener: APICallbackListener) {
         Coroutines.main {
-            val response = featureListRepository.doGetLocationDetails()
+            val response = featureListRepository.doGetCityDetails()
             if (response.body()?.rows.isNullOrEmpty()) {
                 listener.onResponseFailure()
             } else if (response.isSuccessful && response.body()?.rows!!.isNotEmpty()) {

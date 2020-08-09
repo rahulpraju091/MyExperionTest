@@ -35,7 +35,7 @@ interface AppInterfaceAPI {
     }
 
     @GET("s/2iodh4vg0eortkl/facts.json")
-    suspend fun doGetLocationDetails(): Response<CityModel>
+    suspend fun doGetCityDetails(): Response<CityModel>
 
 
 }
