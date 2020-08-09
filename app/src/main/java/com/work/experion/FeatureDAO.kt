@@ -90,4 +90,17 @@ class FeatureDAO(context: Context) : DbDao(context) {
         }
         return featureList
     }
+
+    @SuppressLint("Recycle")
+    fun isTableEmpty(): Boolean {
+        var empty = true
+        val cursor: Cursor = database!!.rawQuery(
+            "SELECT COUNT(*) FROM " + CityContract.Entry.CITY_TABLE,
+            null
+        )
+        if (cursor.moveToFirst()) {
+            empty = cursor.getInt(0) == 0
+        }
+        return empty
+    }
 }
