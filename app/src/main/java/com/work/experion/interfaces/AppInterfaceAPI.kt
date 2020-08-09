@@ -8,6 +8,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/**
+ * Interface
+ *
+ * This class handles all the API functions and DB functions and returns their output.
+ *
+ * @param api is the object of AppInterfaceAPI Interface class.
+ * @param featureDAO is the object of FeatureDAO class. It handles all the DB functions
+ */
 interface AppInterfaceAPI {
 
     companion object {
