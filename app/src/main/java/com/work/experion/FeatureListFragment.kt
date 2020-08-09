@@ -69,36 +69,19 @@ class FeatureListFragment : Fragment() {
         }
         /** swipe_refresh_layout onRefresh listener to refresh the view */
         swipe_refresh_layout.setOnRefreshListener {
-            if (isNetworkAvailable()) {
-                viewModel.doGetLocationDetails(object : APICallbackListener {
-                    override fun onResponseSuccess(response: CityModel) {
-                        swipe_refresh_layout.isRefreshing = false
-                        featureDAO.truncateAllTables()
-                        val insert = featureDAO.insertCityDetailsToDB(response)
-                        if (insert > 0)
-                            featureDAO.insertFeatureDetails(response.rows)
-                    }
-
-                    /** Callback function of null response failure. Calls when features list is empty or null */
-                    override fun onResponseFailure() {
-                        swipe_refresh_layout.isRefreshing = false
-                    }
-
-                    /** Callback function of null response case */
-                    override fun onResponseNull() {
-                        swipe_refresh_layout.isRefreshing = false
-                    }
-
-                })
-            } else {
-                swipe_refresh_layout.isRefreshing = false
-                /** Shows Internet failure toast */
-                Toast.makeText(activity, MSG_INTERNET_FAILURE, Toast.LENGTH_SHORT)
-                    .show()
-            }
+            doGetAllDataFromAPI(featureDAO)
         }
-        /** Calling ViewModel method to get data from DB. */
-        viewModel.doGetDataFromDB()
+
+        /** Calling DAO method to check whether the table is empty or not.
+         * @return true if the table is empty */
+        if (featureDAO.isTableEmpty()) {
+            /** Calling local method to get data from API. */
+            doGetAllDataFromAPI(featureDAO)
+        } else {
+            /** Calling ViewModel method to get data from DB. */
+            viewModel.doGetDataFromDB()
+        }
+
         /** Observing data changes in title.
          * Set title in toolbar */
         viewModel.title?.observe(viewLifecycleOwner, Observer {
@@ -115,6 +98,36 @@ class FeatureListFragment : Fragment() {
                 adapter = FeaturesListAdapter(it)
             }
         })
+    }
+
+    private fun doGetAllDataFromAPI(featureDAO: FeatureDAO) {
+        if (isNetworkAvailable()) {
+            viewModel.doGetLocationDetails(object : APICallbackListener {
+                override fun onResponseSuccess(response: CityModel) {
+                    swipe_refresh_layout.isRefreshing = false
+                    featureDAO.truncateAllTables()
+                    val insert = featureDAO.insertCityDetailsToDB(response)
+                    if (insert > 0)
+                        featureDAO.insertFeatureDetails(response.rows)
+                }
+
+                /** Callback function of null response failure. Calls when features list is empty or null */
+                override fun onResponseFailure() {
+                    swipe_refresh_layout.isRefreshing = false
+                }
+
+                /** Callback function of null response case */
+                override fun onResponseNull() {
+                    swipe_refresh_layout.isRefreshing = false
+                }
+
+            })
+        } else {
+            swipe_refresh_layout.isRefreshing = false
+            /** Shows Internet failure toast */
+            Toast.makeText(activity, MSG_INTERNET_FAILURE, Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     /** Method to check whether the Internet connection is available or not.
