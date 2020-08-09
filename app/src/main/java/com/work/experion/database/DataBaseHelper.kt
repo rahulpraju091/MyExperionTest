@@ -30,8 +30,8 @@ public class DataBaseHelper(private var context: Context) : SQLiteOpenHelper(
         const val CREATE_FEATURE_TABLE = "CREATE TABLE " +
                 FeatureContract.Entry.FEATURE_TABLE + "(" +
                 FeatureContract.Entry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                FeatureContract.Entry.TITLE + " TEXT, "+
-                FeatureContract.Entry.DESCRIPTION + " TEXT, "+
+                FeatureContract.Entry.TITLE + " TEXT, " +
+                FeatureContract.Entry.DESCRIPTION + " TEXT, " +
                 FeatureContract.Entry.IMAGE_URL + " TEXT )"
     }
 
